@@ -9,6 +9,7 @@ Route::group(["prefix" => "auth"], function () {
     Route::post("/login", [AuthController::class, "login"])->name("login");
     Route::post("/logout", [AuthController::class, "logout"])->name("logout")->middleware('auth:sanctum');
 });
+
 Route::group(["prefix" => "categories", "middleware" => ["auth:sanctum"]], function () {
     Route::get("/", [CategoryController::class, "categories"])->name("categories");
     Route::get("/{id}", [CategoryController::class, "category"])->name("category");
